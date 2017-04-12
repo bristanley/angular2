@@ -11,8 +11,20 @@
 	[disabled]="!allowNewServer" 
 	(click)="onCreateServer()">Add Server</button>
 <!-- <p [innerText]="allowNewServer"></p> -->
-<p>{{ serverCreationStatus }}</p>
+<!-- <p>{{ serverCreationStatus }}</p> -->
+<p *ngIf="serverCreated; else noServer">Server was created, server name is {{ serverName }}</p>
 
-<app-server></app-server>
-<app-server></app-server>
+<app-server *ngFor="let server of servers"></app-server>
+
+<hr>
+<button 
+	class="btn btn-secondary"
+	(click)="displayDetails = !displayDetails">Display Details</button>
+<button 
+	class="btn btn-secondary"
+	(click)="onToggleDetails">Display Details</button>
+<p *ngIf="displayDetails">Secret Passoword = Tofu</p>
+
+<div *ngFor="let logItem of log">{{ logItem }}</div>
+
 
